@@ -32,7 +32,7 @@ class _customTextFieldSenha extends State<customTextFieldsenha> {
                       ? Theme.of(context)
                           .textTheme
                           .labelLarge
-                          ?.copyWith(color: Theme.of(context).errorColor)
+                          ?.copyWith(color: Theme.of(context).colorScheme.error)
                       : Theme.of(context).textTheme.labelLarge)),
           TextFormField(
             obscureText: !senhaVisivel,
