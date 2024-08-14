@@ -25,8 +25,8 @@ class bottomNavigatorBar extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                      if(currentRout!='home')
-                      Navigator.pushReplacementNamed(context, 'home');
+                      if(currentRout!='roteador')
+                      Navigator.pushReplacementNamed(context, 'roteador');
                     },
                     splashColor: Theme.of(context).splashColor,
                     child: Column(
@@ -63,10 +63,10 @@ class bottomNavigatorBar extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       
                       children: [
-                        Icon(Iconic.book_alt_straight,
+                        Icon(Icons.map,
                             size: 24, color: Colors.white),
                         Text(
-                          'Diário de Pressão',textAlign: TextAlign.center,
+                          'Mapas',textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
@@ -113,7 +113,7 @@ class bottomNavigatorBar extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                      print(currentRout);
+                      Navigator.of(context).pushNamed('perfil');
                     },
                     splashColor: Theme.of(context).splashColor,
                     child: Column(
