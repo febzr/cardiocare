@@ -27,7 +27,7 @@ class _observacao extends State<observacao> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(left: (5/430)*MediaQuery.of(context).size.width),
+              margin: EdgeInsets.only(left: (5/430)*MediaQuery.of(context).size.width ,bottom: (12/932)*MediaQuery.of(context).size.height),
               child: Text(widget.title,style: Theme.of(context).textTheme.labelLarge,)
             ),
             Stack(
