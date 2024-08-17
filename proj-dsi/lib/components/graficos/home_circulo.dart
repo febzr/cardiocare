@@ -15,10 +15,10 @@ class homeCircular extends StatelessWidget{
                     PieChart(
                       PieChartData(
                         sectionsSpace:3,
-                        centerSpaceRadius: (38/430)*size.width, // Espaço vazio no centro
+                        centerSpaceRadius: (38/932)*size.height, // Espaço vazio no centro
                         sections: [
                           PieChartSectionData(
-                            radius: (14/430)*size.width,
+                            radius: (13/932)*size.height,
                             color: Colors.white,
                             value: 34,
                             title: '34%',
@@ -26,7 +26,7 @@ class homeCircular extends StatelessWidget{
                             titleStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400,fontSize: 12),
                           ),
                           PieChartSectionData(
-                            radius: (14/430)*size.width,
+                            radius: (13/932)*size.height,
                             color: Colors.white,
                             value: 26,
                             title: '26%',
@@ -34,7 +34,7 @@ class homeCircular extends StatelessWidget{
                             titleStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400,fontSize: 12),
                           ),
                           PieChartSectionData(
-                            radius: (14/430)*size.width,
+                            radius: (13/932)*size.height,
                             color: Colors.white,
                             value: 35,
                             title: '35%',
@@ -42,7 +42,7 @@ class homeCircular extends StatelessWidget{
                             titleStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400,fontSize: 12),
                           ),
                           PieChartSectionData(
-                            radius: (14/430)*size.width,
+                            radius: (13/932)*size.height,
                             color: Colors.white,
                             value: 5,
                             title: '5%',

@@ -3,6 +3,7 @@ import 'package:cardiocare/model/model_card_pressao.dart';
 
 cardPressao dataToCardPressao(modelCardPressao data) {
   final card = cardPressao(
+    listindex: data.listindex,
     sistole: data.sistole,
     diastole: data.diastole,
     pulso: data.pulso,
