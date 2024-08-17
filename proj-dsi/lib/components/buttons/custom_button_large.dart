@@ -8,7 +8,7 @@ class customButtonLarge extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width*0.6976,
+      width: MediaQuery.of(context).size.width*(341 / 430),
       height: MediaQuery.of(context).size.height*0.059,
         child: ElevatedButton(
             onPressed: () {

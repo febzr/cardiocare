@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class customFloatingActionbutton extends StatelessWidget {
   final Function() onpress;
-  customFloatingActionbutton({super.key,required this.onpress});
+  final Icon icone;
+  customFloatingActionbutton({super.key,required this.onpress,required this.icone});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,8 @@ class customFloatingActionbutton extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000)),
           backgroundColor: Theme.of(context).primaryColor,
-          hoverColor: Colors.blue,
-          child: Icon(
-            Icons.add_rounded,
-
-            size: MediaQuery.of(context).size.width * (48 / 430),
-            color: Colors.white,
-          ),
+          hoverColor: Theme.of(context).primaryColor,
+          child: icone,
         ));
   }
 }

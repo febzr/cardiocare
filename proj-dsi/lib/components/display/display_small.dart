@@ -14,9 +14,16 @@ class displaySmall extends StatelessWidget{
         alignment: Alignment.topLeft,
         children: [
           Container(
-            width: (178/430)*MediaQuery.of(context).size.width,
+            width: (190/430)*MediaQuery.of(context).size.width,
             height: (143/932)*MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(borderRadius:  BorderRadius.circular(20)),
+            decoration: BoxDecoration(borderRadius:  BorderRadius.circular(20),boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.25), 
+                 
+                  blurRadius: 4,
+                  offset: Offset(0, 4)
+                ),
+              ],),
             child: 
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),

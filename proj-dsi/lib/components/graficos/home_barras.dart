@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class barGrafico extends StatelessWidget {
+class BarGrafico extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -15,32 +15,31 @@ class barGrafico extends StatelessWidget {
           ),
           titlesData: FlTitlesData(
             show: true,
-            
-            bottomTitles: SideTitles( showTitles: true,getTitles: (value) {
-              if(value==0){
-                return '0';
-
-              }
-              else if(value==5){
-                return '6';
-              }
-              return '';
-            },getTextStyles: (context, value) {
-              return Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400,color: Colors.white,fontSize: 12);
-            },),
-            
-            leftTitles: SideTitles(showTitles: false)
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                getTitlesWidget: (value, meta) {
+                  if (value == 0) {
+                    return Text('0', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 12));
+                  } else if (value == 5) {
+                    return Text('6', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 12));
+                  }
+                  return Text('');
+                },
+              ),
+            ),
+            leftTitles: AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ), rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false))
           ),
           barGroups: [
             BarChartGroupData(
               x: 0,
-            
               barRods: [
                 BarChartRodData(
-                  y: 53,
-                  colors: [Colors.white],
+                  toY: 53,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(6),
-                  
                 ),
               ],
             ),
@@ -48,8 +47,8 @@ class barGrafico extends StatelessWidget {
               x: 1,
               barRods: [
                 BarChartRodData(
-                  y: 70,
-                  colors: [Colors.white],
+                  toY: 70,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(6),
                 ),
               ],
@@ -58,8 +57,8 @@ class barGrafico extends StatelessWidget {
               x: 2,
               barRods: [
                 BarChartRodData(
-                  y: 28,
-                  colors: [Colors.white],
+                  toY: 28,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(6),
                 ),
               ],
@@ -68,8 +67,8 @@ class barGrafico extends StatelessWidget {
               x: 3,
               barRods: [
                 BarChartRodData(
-                  y: 36,
-                  colors: [Colors.white],
+                  toY: 36,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(6),
                 ),
               ],
@@ -78,8 +77,8 @@ class barGrafico extends StatelessWidget {
               x: 4,
               barRods: [
                 BarChartRodData(
-                  y: 53,
-                  colors: [Colors.white],
+                  toY: 53,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(6),
                 ),
               ],
@@ -88,8 +87,8 @@ class barGrafico extends StatelessWidget {
               x: 5,
               barRods: [
                 BarChartRodData(
-                  y: 66,
-                  colors: [Colors.white],
+                  toY: 66,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(6),
                 ),
               ],
