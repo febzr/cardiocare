@@ -25,7 +25,7 @@ class confirmaoDeRegistro extends StatelessWidget {
             Image.asset('assets/images/confirmacaodecadastro.png'),
             Padding(
               padding: EdgeInsets.only(top:(67/932)*MediaQuery.of(context).size.height,bottom:(137/932)*MediaQuery.of(context).size.height),
-              child: customButtonLarge(data: (){Navigator.of(context).pushReplacementNamed('login');}, label: 'LOGIN')
+              child: customButtonLarge(data: (){Navigator.of(context).pushReplacementNamed('roteador');}, label: 'LOGIN')
             ),
             Image.asset('assets/images/logo_bottom.png')
           ],
