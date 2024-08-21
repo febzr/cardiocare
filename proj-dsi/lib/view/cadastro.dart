@@ -2,6 +2,7 @@ import 'package:cardiocare/components/buttons/back_button.dart';
 import 'package:cardiocare/components/buttons/custom_button_large.dart';
 import 'package:cardiocare/components/inputs/custom_text_field.dart.dart';
 import 'package:cardiocare/components/inputs/custom_text_field_senha.dart';
+import 'package:cardiocare/service/autenticacao_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -135,9 +136,12 @@ class cadastro extends StatelessWidget {
                                 controller: controllersenha))
                       ]))),
               customButtonLarge(
-                  data: () {
+                  data: () async {
                     if (formKeyCadastro.currentState!.validate()) {
-                      Navigator.of(context).pushReplacementNamed('confirmacao_de_registro');
+                      final auth = Cadastrar(email: controlleremail.text, senha: controllersenha.text, name: controllerNome.text);
+                      final feito = await auth.register();
+                      if (feito==true){
+                      Navigator.of(context).pushReplacementNamed('confirmacao_de_registro');}
                     }
                     
                   },
