@@ -1,20 +1,42 @@
 import 'package:cardiocare/components/buttons/back_button.dart';
-import 'package:cardiocare/components/inputs/custom_date_picker.dart';
-import 'package:cardiocare/components/inputs/custom_text_field.dart.dart';
-import 'package:cardiocare/components/buttons/custom_adicionar.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:cardiocare/components/buttons/custom_button_large.dart';
+import 'package:cardiocare/components/inputs/custom_text_field_small.dart';
+import 'package:cardiocare/components/inputs/observacao.dart';
+import 'package:cardiocare/model/remedio/model_remedio.dart';
+import 'package:cardiocare/service/service.dart';
 
-class createCardRemedio extends StatelessWidget {
+
+import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
+
+
+class createCardRemedio extends StatefulWidget{
+  createCardRemedio({super.key});
+
+  _createCardRemedio createState() => _createCardRemedio();
+}
+
+class _createCardRemedio extends State<createCardRemedio> {
+  final TextEditingController remedio = TextEditingController();
+  final TextEditingController observadacoes = TextEditingController();
   final ruledatas = RegExp(r'^\d{1,3}(\.\d{1,2})?$');
-  final TextEditingController name_alimento = TextEditingController();
+  int cont=0;
+
+ 
+
+ 
 
   @override
-  
   Widget build(BuildContext context) {
-    DateTime? data;
-    TimeOfDay? time;
+    final args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    if (args != null &&  cont<1) {
+      cont=cont+1;
+      remedio.text = args['remedio'].toString();
+      observadacoes.text =
+          args['observacao'] != null ? args['observacao'].toString() : '';
+    }
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
@@ -22,7 +44,7 @@ class createCardRemedio extends StatelessWidget {
               child: Column(children: [
         Stack(
           children: [
-            Row(
+            const Row(
               children: [backButton()],
             ),
             Row(
@@ -33,7 +55,7 @@ class createCardRemedio extends StatelessWidget {
                         top: (62 / 932) * size.height,
                         left: size.width * (100 / 430)),
                     child: Text(
-                      'Dieta',
+                      'Registro de Remédios',
                       style: Theme.of(context).textTheme.titleMedium,
                       textAlign: TextAlign.center,
                     ))
@@ -41,77 +63,35 @@ class createCardRemedio extends StatelessWidget {
             )
           ],
         ),
+
+       Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*(36/932)),
+         child: Container(child:customTextFieldsmall(pesquisa: false,label: 'Nome do Medicamento', hint: 'Escreva aqui', controller: remedio) ,)
+       ),
         Container(
-          child: customTextField(controller: name_alimento, label: "Nome do Alimento", hint: "Escreva aqui", validador: (x){}),
+          margin: EdgeInsets.only(top: (25 / 932) * size.height),
+          child: observacao(controller: observadacoes, title: 'Observações'),
         ),
         Container(
-          width: 0.8 * MediaQuery.of(context).size.width,
-          child: Padding(
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.007,
-              bottom: MediaQuery.of(context).size.height * 0.005),
-            child: Text("Data inicial e final",
-                  style: Theme.of(context).textTheme.labelLarge)
-            )),
-        Container(
-          width: 0.8 * MediaQuery.of(context).size.width,
-          alignment: Alignment.center,
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            customDatePicker(onchange: (picker){data=picker;}),
-            Spacer(),
-            customDatePicker(onchange: (picker){time=picker;})
-          ],)
-        ),
-        Container(
-          width: 0.8 * MediaQuery.of(context).size.width,
-          alignment: Alignment.center,
-          child: Padding(
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.03,
-              bottom: MediaQuery.of(context).size.height * 0.03),
-            child: customAdicionar(data: () {
-              if (name_alimento.text.isEmpty) {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text("Erro"),
-                        content: Text("Nome do alimento não pode ser vazio"),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text("OK"))
-                        ],
-                      );
-                    });
-              } else if (!ruledatas.hasMatch(name_alimento.text)) {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text("Erro"),
-                        content: Text("Nome do alimento não pode conter números"),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text("OK"))
-                        ],
-                      );
-                    });
-              } else {
-                Navigator.of(context).pop();
-              }
-            }, height: 0.06, width: 0.4)
-          )
-        ),
-        Container(
-          width: 0.8 * MediaQuery.of(context).size.width,
-          alignment: Alignment.center,
-        )
+            margin: EdgeInsets.only(
+                top: (380 / 932) * MediaQuery.of(context).size.height,
+                bottom: (33 / 932) * MediaQuery.of(context).size.height),
+            child: customButtonLarge(
+                data: () async{
+                 
+                  if (args != null) {
+                    final rem = modelremedio(id: args['id'], remedio: remedio.text ,observacao: observadacoes.text);
+                    await service().adicionarRemedio(rem);
+                    
+                  }
+                  if (args == null) {
+                    final rem = modelremedio(id: Uuid().v1(), remedio: remedio.text ,observacao: observadacoes.text);
+                    await service().adicionarRemedio(rem);
+                  }
+
+                   Navigator.of(context).pop(context);
+
+                },
+                label: 'SALVAR'))
       ]))),
     );
   }
