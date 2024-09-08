@@ -3,7 +3,7 @@ import 'package:cardiocare/components/buttons/custom_Floating_Action_Buttom.dart
 import 'package:cardiocare/components/cards/card_pressao.dart';
 import 'package:cardiocare/components/inputs/custom_data_picker_null.dart';
 import 'package:cardiocare/control/utils/is_dataigual.dart';
-import '../model/teste_cards.dart';
+import '../control/pressao/listcardpressao.dart';
 import 'package:flutter/material.dart';
 
 class diariodepressao extends StatefulWidget {
@@ -17,18 +17,13 @@ class _diarioDePressao extends State<diariodepressao> {
   @override
   DateTime? data;
 
-  setsetstate(cardPressao i){
-      i.state=(){
-      setState(() {
-        
-      });
-
-      
-
+  setsetstate(cardPressao i) {
+    i.state = () {
+      setState(() {});
     };
     return i;
-
   }
+
   bool dataisigual(cardPressao i, DateTime? d) {
     DateTime t = i.getdatetime();
 
@@ -36,20 +31,19 @@ class _diarioDePressao extends State<diariodepressao> {
     return r.isigual();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: customFloatingActionbutton(icone: Icon(
-            Icons.add_rounded,
-
-            size: MediaQuery.of(context).size.width * (48 / 430),
-            color: Colors.white,
-          ),
+      floatingActionButton: customFloatingActionbutton(
+        icone: Icon(
+          Icons.add_rounded,
+          size: MediaQuery.of(context).size.width * (48 / 430),
+          color: Colors.white,
+        ),
         onpress: () {
           Navigator.of(context).pushNamed('criador_de_pressao').then((_) {
-  setState(() {
-  });
-});;
-          
+            setState(() {});
+          });
         },
       ),
       body: SizedBox(
@@ -59,7 +53,7 @@ class _diarioDePressao extends State<diariodepressao> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Stack(children: [
-                Row(children: [backButton()]),
+                const Row(children: [backButton()]),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Container(
                     width: (180 / 430) * MediaQuery.of(context).size.width,
@@ -103,6 +97,14 @@ class _diarioDePressao extends State<diariodepressao> {
                           } else if (snapshot.hasError) {
                             return Text('Erro: ${snapshot.error}');
                           } else {
+                            
+                            for (var i in snapshot.data!) {
+                              i.state = () {
+                                setState(() {});
+                              };
+                            }
+                            ;
+
                             return RefreshIndicator(
                                 onRefresh: () async {
                                   setState(() {});
@@ -113,7 +115,7 @@ class _diarioDePressao extends State<diariodepressao> {
                                         ? setsetstate(i)
                                         : (dataisigual(setsetstate(i), data)
                                             ? setsetstate(i)
-                                            : SizedBox.shrink())
+                                            : const SizedBox.shrink())
                                 ]));
                           }
                         }))),

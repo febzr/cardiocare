@@ -1,5 +1,5 @@
+import 'package:cardiocare/service/service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:iconic/iconic.dart';
 
 class cardPressao extends StatelessWidget {
@@ -9,7 +9,7 @@ class cardPressao extends StatelessWidget {
   final double peso;
   final String? observacao;
   final int datatime;
-  final int? listindex;
+  final String id;
   Function? state;
 
   cardPressao(
@@ -20,7 +20,7 @@ class cardPressao extends StatelessWidget {
       required this.peso,
       this.observacao,
       required this.datatime,
-      this.listindex,
+      required this.id,
       this.state});
 
   
@@ -46,27 +46,30 @@ class cardPressao extends StatelessWidget {
             BoxShadow(
                 color: Theme.of(context).shadowColor,
                 blurRadius: 4,
-                offset: Offset(0, 4))
+                offset: const Offset(0, 4))
           ],
           color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+          borderRadius: const BorderRadius.all(Radius.circular(10))),
       child: Material(
           color: Colors.transparent,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
           child: InkWell(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             splashColor: Theme.of(context).splashColor,
             onTap: () {
               Navigator.of(context).pushNamed('criador_de_pressao', arguments: {
-                'sistole': sistole,
+                'sistole':  sistole,
                 'diastole': diastole,
                 'pulso': pulso,
                 'peso': peso,
                 'observacao': observacao,
                 'datatime': datatime,
-                'listindex': listindex,
+                'id': id,
                 'state':state
-              });
+              }).then((_){state!();});
+
+
+
             },
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,7 +77,7 @@ class cardPressao extends StatelessWidget {
               children: [
                 Text(
                   timestampToDate(
-                      DateTime.fromMillisecondsSinceEpoch(this.datatime)),
+                      DateTime.fromMillisecondsSinceEpoch(datatime)),
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 Row(children: [
@@ -86,20 +89,22 @@ class cardPressao extends StatelessWidget {
                         'diastole': diastole,
                         'pulso': pulso,
                         'peso': peso,
+                        'id': id,
                         'observacao': observacao,
                         'datatime': datatime,
                         'state':state
-                      });
+                      }).then((_){state!();});
                     },
-                    icon: Icon(Iconic.pencil),
+                    icon: const Icon(Iconic.pencil),
                     color: Theme.of(context).primaryColor,
                     iconSize: (33 / 932) * size.height,
                   ),
                   IconButton(
                     onPressed: () {
-                      print('excluir');
+                      service().apagarpressao(id);
+                      state!();
                     },
-                    icon: Icon(Iconic.trash_straight),
+                    icon: const Icon(Iconic.trash_straight),
                     color: Theme.of(context).primaryColor,
                     iconSize: (33 / 932) * size.height,
                   ),

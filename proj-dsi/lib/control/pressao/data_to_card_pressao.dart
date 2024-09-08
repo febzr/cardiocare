@@ -1,9 +1,9 @@
 import 'package:cardiocare/components/cards/card_pressao.dart';
-import 'package:cardiocare/model/model_card_pressao.dart';
+import 'package:cardiocare/model/pressao/model_pressao.dart';
 
-cardPressao dataToCardPressao(modelCardPressao data) {
+cardPressao dataToCardPressao(modelPressao data) {
   final card = cardPressao(
-    listindex: data.listindex,
+    id: data.id,
     sistole: data.sistole,
     diastole: data.diastole,
     pulso: data.pulso,
