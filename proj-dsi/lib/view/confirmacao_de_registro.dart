@@ -2,10 +2,12 @@ import 'package:cardiocare/components/buttons/custom_button_large.dart';
 import 'package:flutter/material.dart';
 
 class confirmaoDeRegistro extends StatelessWidget {
+  const confirmaoDeRegistro({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -14,7 +16,7 @@ class confirmaoDeRegistro extends StatelessWidget {
               padding: EdgeInsets.only(
                   top: (187 / 932) * MediaQuery.of(context).size.height,
                   bottom: (50 / 932) * MediaQuery.of(context).size.height),
-              child: Container(
+              child: SizedBox(
                   width: (332 / 430) * MediaQuery.of(context).size.width,
                   child: Text(
                     'Seu cadastro foi realizado com sucesso!',

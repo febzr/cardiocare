@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 class homeCircular extends StatelessWidget{
+  const homeCircular({super.key});
+
   
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(width: (150/430)*size.width,
+    return SizedBox(width: (150/430)*size.width,
                 height:(106/932)*size.height,
                   child: AspectRatio(
                 aspectRatio: 1.3,
@@ -55,7 +57,7 @@ class homeCircular extends StatelessWidget{
                         ),
                       ),
                     ),
-                    Text(
+                    const Text(
                     '',
                       style: TextStyle(
                         fontSize: 24,

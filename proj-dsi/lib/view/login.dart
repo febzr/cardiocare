@@ -1,15 +1,15 @@
 import 'package:cardiocare/components/buttons/custom_button_large.dart';
 import 'package:cardiocare/components/inputs/custom_text_field.dart.dart';
 import 'package:cardiocare/components/inputs/custom_text_field_senha.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cardiocare/service/autenticacao_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/services.dart';
 
 class Login extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController controllerLogin = TextEditingController();
   final TextEditingController controllerSenha = TextEditingController();
+
+  Login({super.key});
   String? validatorlogin(String? value) {
     if (value == null || value.isEmpty) {
       return 'coloco um email';
@@ -30,6 +30,7 @@ class Login extends StatelessWidget {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
    
     return Scaffold(
@@ -55,7 +56,7 @@ class Login extends StatelessWidget {
             Padding(
                 padding: EdgeInsets.only(
                     bottom: (56 / 932) * MediaQuery.of(context).size.height),
-                child: Container(
+                child: SizedBox(
                     width: (270 / 430) * MediaQuery.of(context).size.width,
                     child: Text(
                       'Olá, seja bem-vindo de volta. Insira seu login e senha.',
@@ -85,9 +86,8 @@ class Login extends StatelessWidget {
                     customButtonLarge(
                       data: () {
                         if (_formKey.currentState!.validate()) {
-                         Navigator.pushReplacementNamed(context, 'home');
+                         Cadastrar(email: controllerLogin.text, senha: controllerSenha.text).login();
                         }
-                        ;
                       },
                       label: 'ENTRAR',
                     ),

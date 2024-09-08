@@ -1,14 +1,18 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cardiocare/components/bottombar/bottom_bar.dart';
 import 'package:cardiocare/components/display/display_small.dart';
 import 'package:cardiocare/components/drawer/drawer.dart';
 import 'package:cardiocare/components/display/display_large.dart';
 import 'package:cardiocare/components/graficos/home_barras.dart';
 import 'package:cardiocare/components/graficos/home_circulo.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cardiocare/image/perfil/imagedisplay.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class home extends StatefulWidget {
+  const home({super.key});
+
   @override
   _home createState() => _home();
 }
@@ -19,7 +23,7 @@ class _home extends State<home> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      endDrawer: customDrawer,
+      endDrawer: customDrawer(context),
       body: Container(
         child: Column(
           children: [
@@ -29,7 +33,7 @@ class _home extends State<home> {
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20))),
-              height: (160 / 932) * MediaQuery.of(context).size.height,
+              height: (150 / 932) * MediaQuery.of(context).size.height,
               child: SafeArea(
                   child: Row(
                 children: [
@@ -37,28 +41,19 @@ class _home extends State<home> {
                     margin: EdgeInsets.only(
                         left: (23 / 430) * MediaQuery.of(context).size.width,
                         right: (20 / 430) * MediaQuery.of(context).size.width),
-                    width: (50 / 430) * MediaQuery.of(context).size.width,
-                    height: (50 / 430) * MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.blue,
-                    ),
-                    child: ClipOval(
-                        child: Image.asset(
-                      'assets/images/user.png',
-                      fit: BoxFit.fill,
-                    )),
+               
+                    child: Imagedisplay(width: 50, height: 50)
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'fulano de tal',
+                       '${ FirebaseAuth.instance.currentUser!.displayName}',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      Text('64 anos',
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 14))
+                      Text('${ FirebaseAuth.instance.currentUser!.email}',
+                          style: Theme.of(context).textTheme.displayLarge)
                     ],
                   ),
                   Spacer(),
@@ -81,7 +76,7 @@ class _home extends State<home> {
             Container(
               width: double.infinity,
               padding: EdgeInsets.only(
-                  top: (31 / 932) * MediaQuery.of(context).size.height,
+                  top: (20 / 932) * MediaQuery.of(context).size.height,
                   bottom: (20 / 932) * MediaQuery.of(context).size.height),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +99,7 @@ class _home extends State<home> {
                             )),
                         displaySmall(
                           ontap: () {
-                            print('agua');
+                            Navigator.pushNamed(context, 'consumo_agua');
                           },
                           image: 'assets/images/displayconsumodeagua.png',
                           label: 'Consumo de Água',
@@ -119,13 +114,13 @@ class _home extends State<home> {
                             label: 'remédios',
                             image: 'assets/images/displayremedio.png',
                             ontap: () {
-                              print('remedio');
+                              Navigator.pushNamed(context, 'remedio');
                             })),
                     displayLarge(
                         label: 'Dieta',
                         image: 'assets/images/displaycomida.png',
                         ontap: () {
-                          print('comida');
+                          Navigator.pushNamed(context, 'dieta');
                         })
                   ])
                 ],
@@ -133,8 +128,15 @@ class _home extends State<home> {
             ),
             Container(
               width: (377 / 430) * MediaQuery.of(context).size.width,
-              height: (260 / 932) * MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
+              height: (280 / 932) * MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.25), 
+                 
+                  blurRadius: 4,
+                  offset: Offset(0, 4)
+                ),
+              ],
                   borderRadius: BorderRadius.circular(20),
                   color: Theme.of(context).primaryColor),
               child: Column(
@@ -156,7 +158,7 @@ class _home extends State<home> {
                                 'pressão x dia',
                                 style: Theme.of(context).textTheme.titleSmall,
                               )),
-                          barGrafico()
+                          BarGrafico()
                         ],
                       ),
                       Container(

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class BarGrafico extends StatelessWidget {
+  const BarGrafico({super.key});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: (100 / 430) * size.width,
       height: (106 / 930) * size.height,
       child: BarChart(
@@ -24,13 +26,13 @@ class BarGrafico extends StatelessWidget {
                   } else if (value == 5) {
                     return Text('6', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 12));
                   }
-                  return Text('');
+                  return const Text('');
                 },
               ),
             ),
-            leftTitles: AxisTitles(
+            leftTitles: const AxisTitles(
               sideTitles: SideTitles(showTitles: false),
-            ), rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false))
+            ), rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false))
           ),
           barGroups: [
             BarChartGroupData(

@@ -1,12 +1,12 @@
 import 'package:cardiocare/components/buttons/custom_button_large.dart';
 import 'package:cardiocare/components/inputs/custom_text_field.dart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class esqueciMinhaSenha extends StatelessWidget {
   final TextEditingController controlleremail = TextEditingController();
   final formKeyEmail = GlobalKey<FormState>();
+
+  esqueciMinhaSenha({super.key});
   String? validadoremail(String? value) {
     if (value == null || value.isEmpty) {
       return 'preencha o seu email';
@@ -20,7 +20,7 @@ class esqueciMinhaSenha extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: SingleChildScrollView(
           child: Column(
@@ -31,7 +31,7 @@ class esqueciMinhaSenha extends StatelessWidget {
                       top: (132 / 932) * MediaQuery.of(context).size.height,
                       bottom: (24 / 932) * MediaQuery.of(context).size.height),
                   child: Image.asset('assets/images/recuperarsenha.png')),
-              Container(
+              SizedBox(
                 width: (283/430)*MediaQuery.of(context).size.width,
                 child: Text(
                   'Recuperação de Senha',

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 ThemeData themeMain = ThemeData(
-  primaryColor: Color.fromARGB(255, 205, 19, 19),
+  primaryColor: const Color.fromARGB(255, 205, 19, 19),
   brightness: Brightness.light,
-  scaffoldBackgroundColor: Color.fromARGB(255, 240, 240, 240),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 240, 240, 240),
   cardColor: Colors.white,
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: Color.fromARGB(255, 205, 19, 19),
-          textStyle: TextStyle(
+          backgroundColor: const Color.fromARGB(255, 205, 19, 19),
+          textStyle: const TextStyle(
               fontSize: 16, fontFamily: 'inter', fontWeight: FontWeight.w700),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)))),
-  shadowColor: Color.fromARGB(63, 0, 0, 0),
+  shadowColor: const Color.fromARGB(63, 0, 0, 0),
   textTheme: const TextTheme(
     titleLarge: TextStyle(
         fontSize: 48,
@@ -88,6 +87,6 @@ ThemeData themeMain = ThemeData(
   ),
   colorScheme: ColorScheme.fromSwatch(
   ).copyWith(
-    error: Color.fromARGB(255, 205, 19, 19), // Personalize a cor de erro
+    error: const Color.fromARGB(255, 205, 19, 19), // Personalize a cor de erro
   ),
 );

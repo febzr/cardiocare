@@ -3,10 +3,7 @@ import 'package:cardiocare/components/buttons/custom_button_large.dart';
 import 'package:cardiocare/components/inputs/custom_text_field.dart.dart';
 import 'package:cardiocare/components/inputs/custom_text_field_senha.dart';
 import 'package:cardiocare/service/autenticacao_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/services.dart';
 
 class cadastro extends StatelessWidget {
   final formKeyCadastro = GlobalKey<FormState>();
@@ -14,6 +11,8 @@ class cadastro extends StatelessWidget {
   final TextEditingController controlleremail = TextEditingController();
   final TextEditingController controllertelefone = TextEditingController();
   final TextEditingController controllersenha = TextEditingController();
+
+  cadastro({super.key});
 
   String? validadornome(String? value) {
     if (value == null || value.isEmpty) {
@@ -64,7 +63,7 @@ class cadastro extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Stack( children: [
-                Row(
+                const Row(
                   children: [
                     backButton(),
                   ]
@@ -90,7 +89,7 @@ class cadastro extends StatelessWidget {
                     'Cadastro',
                     style: Theme.of(context).textTheme.titleLarge,
                   )),
-              Container(
+              SizedBox(
                   width: ((254 / 430) * MediaQuery.of(context).size.width),
                   child: Text('Preencha os dados solicitados com atenção',
                       style: Theme.of(context).textTheme.bodySmall,
