@@ -15,6 +15,7 @@ class customRemedioPicker extends StatefulWidget {
       required this.height,
       required this.width});
 
+  @override
   State<customRemedioPicker> createState() => _customTextField();
 }
 
@@ -22,7 +23,7 @@ class _customTextField extends State<customRemedioPicker> {
   bool labelcor = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: (341 / 430) * MediaQuery.of(context).size.width,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           TextFormField(
@@ -49,19 +50,19 @@ class _customTextField extends State<customRemedioPicker> {
                 enabledBorder: OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Theme.of(context).primaryColor),
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).primaryColor),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
                 errorBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).primaryColor,width: 2),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                   
                 ),
                 focusedErrorBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).primaryColor,width: 2),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                   
                 ),
                 contentPadding: EdgeInsets.only(

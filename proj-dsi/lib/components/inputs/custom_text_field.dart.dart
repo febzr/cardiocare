@@ -12,6 +12,7 @@ class customTextField extends StatefulWidget {
       required this.validador,
       required this.hint,required this.controller});
 
+  @override
   State<customTextField> createState() => _customTextField();
 }
 
@@ -19,7 +20,7 @@ class _customTextField extends State<customTextField> {
   bool labelcor = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: (341 / 430) * MediaQuery.of(context).size.width,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
@@ -56,19 +57,19 @@ class _customTextField extends State<customTextField> {
                 enabledBorder: OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Theme.of(context).primaryColor),
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).primaryColor),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
                 errorBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).primaryColor,width: 2),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                   
                 ),
                 focusedErrorBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).primaryColor,width: 2),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                   
                 ),
                 contentPadding: EdgeInsets.only(

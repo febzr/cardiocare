@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class customDatePickerNull extends StatefulWidget {
   final Function onchange;
-  customDatePickerNull({required this.onchange});
+  const customDatePickerNull({super.key, required this.onchange});
 
+  @override
   State<customDatePickerNull> createState() => _customdatepickerNull();
 }
 
@@ -25,6 +25,7 @@ class _customdatepickerNull extends State<customDatePickerNull> {
         firstDate: DateTime(1970),
         lastDate: DateTime(2100),
         initialDate: (data != null) ? data : DateTime.now());
+        
     if (picked != null) {
       setState(() {
         data = picked;
@@ -43,10 +44,11 @@ class _customdatepickerNull extends State<customDatePickerNull> {
         margin: EdgeInsets.only( right: ((23/430)*MediaQuery.of(context).size.width)/2,top: ((23/932)*MediaQuery.of(context).size.height)/2),
         decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             border: Border.all(color: Theme.of(context).primaryColor)),
         child: Material(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          color: Colors.transparent,
           child: InkWell(
             onTap: () async {
               _selecDate();
@@ -73,11 +75,12 @@ class _customdatepickerNull extends State<customDatePickerNull> {
         children: [
           
           Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(100)) ),
+            decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(100)) ),
             width: (23/430)*MediaQuery.of(context).size.width,
                           height: (23/932)*MediaQuery.of(context).size.height,
             child: Material(
               borderRadius: BorderRadius.circular(100),
+              color: Colors.transparent,
               child: InkWell(
                 onTap: (){setState(() {
                   data = null;
@@ -89,8 +92,8 @@ class _customdatepickerNull extends State<customDatePickerNull> {
                           
                           width: (23/430)*MediaQuery.of(context).size.width,
                           height: (23/932)*MediaQuery.of(context).size.height,
-                          decoration: BoxDecoration(shape: BoxShape.circle,color: Color.fromARGB(255, 205, 19, 19)),
-                          child: Icon(Icons.close,color: Colors.white,size: 12,)
+                          decoration: const BoxDecoration(shape: BoxShape.circle,color: Color.fromARGB(255, 205, 19, 19)),
+                          child: const Icon(Icons.close,color: Colors.white,size: 12,)
                           )
                 )
             )

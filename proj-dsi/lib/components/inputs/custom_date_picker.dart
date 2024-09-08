@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 class customDatePicker extends StatefulWidget {
   
   final Function onchange;
-  customDatePicker({required this.onchange});
+  final DateTime? datas;
+  const customDatePicker({super.key, required this.onchange,this.datas});
 
  
+  @override
   State<customDatePicker> createState() => _customdatepicker();
 }
 
 class _customdatepicker extends State<customDatePicker> {
   DateTime? data;
+  
   
   String getDateorMessage(DateTime ?data){
     if(data == null){
@@ -36,17 +39,22 @@ class _customdatepicker extends State<customDatePicker> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.datas !=null){
+      data=widget.datas;
+    
+  }
     return Container(
       height: (50 / 932) * MediaQuery.of(context).size.height,
-      width: (183 / 430) * MediaQuery.of(context).size.width,
+      width: (176 / 430) * MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*(12/430)),
       decoration: BoxDecoration(
         
           color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(color: Theme.of(context).primaryColor)),
       child: Material(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        color: Colors.transparent,
         child: InkWell(
           onTap: ()async{_selecDate();},
           splashColor: Theme.of(context).splashColor,

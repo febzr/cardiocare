@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
 
-class customTextFieldsenha extends StatefulWidget {
+class customTextFieldsmall extends StatefulWidget {
   final String label;
   final String hint;
-  final String? Function(String?) validador;
   final TextEditingController controller;
+  final bool pesquisa;
 
-  const customTextFieldsenha(
+  const customTextFieldsmall(
       {super.key,
       required this.label,
-      required this.validador,
-      required this.hint,
-      required this.controller});
+      required this.hint,required this.controller, required this.pesquisa});
 
   @override
-  State<customTextFieldsenha> createState() => _customTextFieldSenha();
+  State<customTextFieldsmall> createState() => _customTextFieldsmall();
 }
 
-class _customTextFieldSenha extends State<customTextFieldsenha> {
+class _customTextFieldsmall extends State<customTextFieldsmall> {
   bool labelcor = false;
-  bool senhaVisivel = false;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: (341 / 430) * MediaQuery.of(context).size.width,
+        width: (374 / 430) * MediaQuery.of(context).size.width,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
               padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height * 0.005),
+                  bottom: MediaQuery.of(context).size.height * 0.005,left: MediaQuery.of(context).size.width * (5/430)),
               child: Text(widget.label,
                   style: labelcor
                       ? Theme.of(context)
@@ -36,32 +33,10 @@ class _customTextFieldSenha extends State<customTextFieldsenha> {
                           ?.copyWith(color: Theme.of(context).colorScheme.error)
                       : Theme.of(context).textTheme.labelLarge)),
           TextFormField(
-            obscureText: !senhaVisivel,
             controller: widget.controller,
-            validator: (value) {
-              String? result = widget.validador(value);
-              if (result == null) {
-                setState(() {
-                  labelcor = false;
-                });
-              } else {
-                setState(() {
-                  labelcor = true;
-                });
-              }
-              return result;
-            },
             style: Theme.of(context).textTheme.labelMedium,
             decoration: InputDecoration(
-                suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        senhaVisivel = !senhaVisivel;
-                      });
-                    },
-                    icon: Icon(senhaVisivel
-                        ? Icons.visibility
-                        : Icons.visibility_off)),
+              prefixIcon: widget.pesquisa? Icon(Icons.search,color: Theme.of(context).primaryColor,):null,
                 fillColor: Theme.of(context).cardColor,
                 filled: true,
                 hintStyle: Theme.of(context).textTheme.labelMedium,
@@ -75,18 +50,18 @@ class _customTextFieldSenha extends State<customTextFieldsenha> {
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Theme.of(context).primaryColor, width: 2),
+                  borderSide: BorderSide(color: Theme.of(context).primaryColor,width: 2),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Theme.of(context).primaryColor, width: 2),
+                  borderSide: BorderSide(color: Theme.of(context).primaryColor,width: 2),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  
                 ),
                 contentPadding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.024,
-                    bottom: MediaQuery.of(context).size.height * 0.024,
+                    top: MediaQuery.of(context).size.height * 0.019,
+                    bottom: MediaQuery.of(context).size.height * 0.019,
                     left: MediaQuery.of(context).size.width * 0.044)),
           )
         ]));

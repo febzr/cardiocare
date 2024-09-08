@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class customAdicionar extends StatelessWidget {
@@ -14,7 +13,7 @@ class customAdicionar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * width,
       height: MediaQuery.of(context).size.height * height,
       child: ElevatedButton(

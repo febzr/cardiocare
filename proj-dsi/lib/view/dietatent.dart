@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart'; // Para formatar datas
 import 'package:cardiocare/components/buttons/custom_button_add.dart';
 import 'package:cardiocare/components/buttons/custom_button_large.dart';
 import 'package:cardiocare/components/inputs/custom_date_picker.dart';
 import 'package:cardiocare/components/inputs/custom_hours_picker.dart';
 import 'package:cardiocare/components/inputs/custom_text_field_extra.dart';
 import 'package:cardiocare/components/buttons/back_button.dart';
-import 'package:cardiocare/model/dieta/model_card_dieta.dart';
-import 'package:cardiocare/service/service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:uuid/uuid.dart'; // Importar FirebaseAuth
 
 class DietaScreen extends StatefulWidget {
   const DietaScreen({super.key});
@@ -19,22 +16,21 @@ class DietaScreen extends StatefulWidget {
 
 class _DietaScreenState extends State<DietaScreen> {
   final TextEditingController _foodController = TextEditingController();
-  TimeOfDay? selectedTime = null;
-  DateTime? selectedDate = null;
-  int cont=0;
-  List _foodItems = []; // Lista para armazenar os alimentos
+  TimeOfDay? selectedTime;
+  DateTime? selectedDate;
+  List<Map<String, String>> _foodItems = [];
 
   void _addFoodItem() {
-    if (_foodController.text.isNotEmpty) {
-
-      
+    if (_foodController.text.isNotEmpty && selectedTime != null && selectedDate != null) {
       setState(() {
-        _foodItems.add(
-          {
+        _foodItems.add({
           'food': _foodController.text,
-          'time': selectedTime!=null?'${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}':'${TimeOfDay.now().hour.toString().padLeft(2, '0')}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}',
-        }); 
+          'time': '${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}',
+          'date': DateFormat('dd/MM/yy').format(selectedDate!),
+        });
         _foodController.clear();
+        selectedTime = null;
+        selectedDate = null;
       });
     }
   }
@@ -45,63 +41,10 @@ class _DietaScreenState extends State<DietaScreen> {
     });
   }
 
-  _saveDieta(args) async {
-
-
-    if (_foodItems.isNotEmpty) {
-
-
-      // Obtém o ID do usuário logado
-      final userId = FirebaseAuth.instance.currentUser?.uid;
-      if (userId == null) {
-        // Se não houver um usuário logado, exiba uma mensagem de erro ou retorne
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Usuário não autenticado')),
-        );
-        return;
-      }
-
-      // Salva os itens no Firebase
-      final serviceInstance = service();
-      if(args !=null){
-        final dietaItem = modelDieta(
-          id: args['id'], 
-          alimentos:  _foodItems,
-          datatime: (selectedDate == null?DateTime.now().millisecondsSinceEpoch : selectedDate!.millisecondsSinceEpoch),
-        );
-
-        // Adiciona o item à lista do serviço
-        await serviceInstance.adicionarDieta(dietaItem);
-      }else{
-      final dietaItem = modelDieta(
-          id: Uuid().v1(), // Usa o ID do usuário logado
-          alimentos:  _foodItems,
-          datatime: (selectedDate == null?DateTime.now().millisecondsSinceEpoch : selectedDate!.millisecondsSinceEpoch),
-        );
-
-        // Adiciona o item à lista do serviço
-        await serviceInstance.adicionarDieta(dietaItem);}
-      
-
-      // Voltar para a tela anterior
-       Navigator.of(context).pop(context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
-    final args =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-    if (args != null &&  cont<1) {
-      cont=cont+1;
-      _foodItems = args['alimentos'];
-      DateTime dateTime =
-          DateTime.fromMillisecondsSinceEpoch(args['datatime'], isUtc: true);
-
-      selectedDate = dateTime;
-    }
 
     return Scaffold(
       body: SizedBox(
@@ -187,18 +130,18 @@ class _DietaScreenState extends State<DietaScreen> {
               Expanded(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  padding: EdgeInsets.only(right: 24),
+                  padding: EdgeInsets.only(right: 24), // Distância ajustada
                   child: SizedBox(
                     width: (374 / 430) * screenWidth,
                     child: Column(
                       children: List.generate(_foodItems.length, (index) {
                         return Stack(
-                          clipBehavior: Clip.none,
+                          clipBehavior: Clip.none, // Permite o botão ficar fora do card
                           children: [
                             Card(
                               margin: EdgeInsets.only(
                                 bottom: screenHeight * (8 / 932),
-                                left: screenWidth * (16 / 430),
+                                left: screenWidth * (16 / 430), // Ajusta o alinhamento do card
                               ),
                               child: ListTile(
                                 contentPadding: EdgeInsets.symmetric(horizontal: screenWidth * (16 / 430)),
@@ -207,16 +150,16 @@ class _DietaScreenState extends State<DietaScreen> {
                               ),
                             ),
                             Positioned(
-                              right: -12,
-                              top: (screenHeight * (16 / 932) / 2) - 12,
+                              right: -12, // Distância reduzida para o botão
+                              top: (screenHeight * (16 / 932) / 2) - 12, // Ajusta a posição vertical
                               child: GestureDetector(
                                 onTap: () => _removeFoodItem(index),
                                 child: CircleAvatar(
-                                  radius: 12,
+                                  radius: 12, // Reduz o diâmetro do círculo
                                   backgroundColor: Colors.red,
                                   child: Icon(
                                     Icons.close,
-                                    size: 14,
+                                    size: 14, // Ajusta o tamanho do ícone
                                     color: Colors.white,
                                   ),
                                 ),
@@ -236,7 +179,9 @@ class _DietaScreenState extends State<DietaScreen> {
                 child: Align(
                   alignment: Alignment.center,
                   child: customButtonLarge(
-                    data: ()async{await _saveDieta(args);}, // Chama a função que salva a dieta
+                    data: () {
+                      // Lógica para salvar a dieta
+                    },
                     label: 'SALVAR',
                   ),
                 ),

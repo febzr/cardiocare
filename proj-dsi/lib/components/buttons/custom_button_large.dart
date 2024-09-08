@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class customButtonLarge extends StatelessWidget {
@@ -6,8 +5,9 @@ class customButtonLarge extends StatelessWidget {
   final String label;
   const customButtonLarge({super.key, required this.data, required this.label});
 
+  @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width*(341 / 430),
       height: MediaQuery.of(context).size.height*0.059,
         child: ElevatedButton(

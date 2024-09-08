@@ -5,7 +5,7 @@ class cardsData extends StatelessWidget {
   final TextEditingController controller;
   final String titulo;
   final String subtitulo;
-  cardsData({super.key, required this.controller,required this.titulo,required this.subtitulo});
+  const cardsData({super.key, required this.controller,required this.titulo,required this.subtitulo});
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -30,7 +30,7 @@ class cardsData extends StatelessWidget {
               )
             ],
           ),
-          Container(
+          SizedBox(
             width: (128 / 430) * size.width,
             height: (65/932)*size.height,
             child: TextFormField(

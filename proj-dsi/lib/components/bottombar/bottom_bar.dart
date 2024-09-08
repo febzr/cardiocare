@@ -55,8 +55,8 @@ class bottomNavigatorBar extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                      if(currentRout!='diario_de_pressao'){
-                      Navigator.pushNamed(context, 'diario_de_pressao');}
+                      if(currentRout!='mapa'){
+                      Navigator.pushNamed(context, 'mapa');}
                     },
                     splashColor: Theme.of(context).splashColor,
                     child: Column(
@@ -85,35 +85,11 @@ class bottomNavigatorBar extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                      print(currentRout);
-                    },
-                    splashColor: Theme.of(context).splashColor,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Iconic.medicine,
-                            size: 24, color: Colors.white),
-                        Text(
-                          'Medicamentos',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontSize: 8),
-                        )
-                      ],
-                    ),
-                  ))),
-          Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(12)),
-              width: (77 / 430) * MediaQuery.of(context).size.width,
-              child: Material(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(12),
-                    onTap: () {
-                      Navigator.of(context).pushNamed('perfil');
+
+                     
+                      if(currentRout!='perfil'){
+                      Navigator.pushNamed(context, 'perfil');}
+                    
                     },
                     splashColor: Theme.of(context).splashColor,
                     child: Column(

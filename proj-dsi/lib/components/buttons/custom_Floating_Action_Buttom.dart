@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class customFloatingActionbutton extends StatelessWidget {
   final Function() onpress;
   final Icon icone;
-  customFloatingActionbutton({super.key,required this.onpress,required this.icone});
+  const customFloatingActionbutton({super.key,required this.onpress,required this.icone});
 
   @override
   Widget build(BuildContext context) {

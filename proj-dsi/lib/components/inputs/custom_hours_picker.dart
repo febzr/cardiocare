@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 class customHourPicker extends StatefulWidget {
   final Function onchange;
-  customHourPicker({required this.onchange});
+  final TimeOfDay? times;
+  const customHourPicker({super.key, required this.onchange,this.times});
 
+  @override
   State<customHourPicker> createState() => _customHourpicker();
 }
 
 class _customHourpicker extends State<customHourPicker> {
   TimeOfDay? data;
+  
 
   String getDateorMessage(TimeOfDay? data) {
     if (data == null) {
@@ -31,17 +34,22 @@ class _customHourpicker extends State<customHourPicker> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.times !=null){
+      data=widget.times;
+    
+  }
     return Container(
       height: (50 / 932) * MediaQuery.of(context).size.height,
-      width: (183 / 430) * MediaQuery.of(context).size.width,
+      width: (176 / 430) * MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width * (12 / 430)),
       decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(color: Theme.of(context).primaryColor)),
       child: Material(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        color: Colors.transparent,
         child: InkWell(
           onTap: () async {
             _selecDate();

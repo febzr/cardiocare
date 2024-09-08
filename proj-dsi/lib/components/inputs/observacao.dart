@@ -11,7 +11,7 @@ class observacao extends StatefulWidget{
   final TextEditingController controller;
   final String title;
   
-  observacao({super.key,required this.controller,required this.title});
+  const observacao({super.key,required this.controller,required this.title});
   
   @override
   _observacao createState()=> _observacao();
@@ -21,7 +21,7 @@ class _observacao extends State<observacao> {
   
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: (374 / 430) * MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,9 +33,9 @@ class _observacao extends State<observacao> {
             Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.only(right: 10,top: 5),
-                  child: Text('${textwords(widget.controller.selection.baseOffset)}/100',style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 12),),
+                  margin: const EdgeInsets.only(right: 10,top: 5),
                   alignment: Alignment.topRight,
+                  child: Text('${textwords(widget.controller.selection.baseOffset)}/100',style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 12),),
                 ),
                 TextField(
                   onChanged: (value){setState(() {

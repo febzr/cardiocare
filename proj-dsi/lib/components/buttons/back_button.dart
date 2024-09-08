@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class backButton extends StatelessWidget{
+  final Function? fuc;
+  const backButton({super.key, this.fuc});
+
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -10,11 +13,14 @@ class backButton extends StatelessWidget{
                     
                     decoration: ShapeDecoration(
                         color: Theme.of(context).cardColor,
-                        shape: CircleBorder()),
+                        shape: const CircleBorder()),
                     child: IconButton(
                       padding: EdgeInsets.all(
                         (13 / 932) * MediaQuery.of(context).size.height),
                         onPressed: () {
+                          if(fuc!=null){
+                            fuc!();
+                          }
                           Navigator.of(context).pop();
                         },
                         icon: Icon(
