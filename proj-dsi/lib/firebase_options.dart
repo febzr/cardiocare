@@ -41,48 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDMtLZkdHtaFfagBSOQYLDiN1VY5UWk71w',
-    appId: '1:605745330694:web:94dc9d0357163650ff6187',
-    messagingSenderId: '605745330694',
-    projectId: 'cardiocare-data',
-    authDomain: 'cardiocare-data.firebaseapp.com',
-    storageBucket: 'cardiocare-data.appspot.com',
-    measurementId: 'G-2MSGTQ6QD2',
+    apiKey: 'AIzaSyBiRFo_c5PrNUYlFd9hRRFG1gCjGqck0tw',
+    appId: '1:1080513248428:web:da34dcaa3a87ef79747309',
+    messagingSenderId: '1080513248428',
+    projectId: 'cardiocare-database',
+    authDomain: 'cardiocare-database.firebaseapp.com',
+    storageBucket: 'cardiocare-database.appspot.com',
+    measurementId: 'G-XTVPG88QJN',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAtSmR5uADyWhVIEYB23iBrKuSybF-YlZI',
-    appId: '1:605745330694:android:b83e9b2186313e95ff6187',
-    messagingSenderId: '605745330694',
-    projectId: 'cardiocare-data',
-    storageBucket: 'cardiocare-data.appspot.com',
+    apiKey: 'AIzaSyBVSagYg1wrT7Jy1FQk0M-1xfTr1NHnBGw',
+    appId: '1:1080513248428:android:87e140f3976f55aa747309',
+    messagingSenderId: '1080513248428',
+    projectId: 'cardiocare-database',
+    storageBucket: 'cardiocare-database.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDRR0pC7nqQH1HFbiWtxYHzaIJDXCOsEWQ',
-    appId: '1:605745330694:ios:5b6b8719972ff39dff6187',
-    messagingSenderId: '605745330694',
-    projectId: 'cardiocare-data',
-    storageBucket: 'cardiocare-data.appspot.com',
+    apiKey: 'AIzaSyDifrwdcV9gx0qXc1w5bmXRNSZgrpqFkLQ',
+    appId: '1:1080513248428:ios:91a1b9db8881a196747309',
+    messagingSenderId: '1080513248428',
+    projectId: 'cardiocare-database',
+    storageBucket: 'cardiocare-database.appspot.com',
     iosBundleId: 'com.example.cardiocare',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDRR0pC7nqQH1HFbiWtxYHzaIJDXCOsEWQ',
-    appId: '1:605745330694:ios:5b6b8719972ff39dff6187',
-    messagingSenderId: '605745330694',
-    projectId: 'cardiocare-data',
-    storageBucket: 'cardiocare-data.appspot.com',
+    apiKey: 'AIzaSyDifrwdcV9gx0qXc1w5bmXRNSZgrpqFkLQ',
+    appId: '1:1080513248428:ios:91a1b9db8881a196747309',
+    messagingSenderId: '1080513248428',
+    projectId: 'cardiocare-database',
+    storageBucket: 'cardiocare-database.appspot.com',
     iosBundleId: 'com.example.cardiocare',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDMtLZkdHtaFfagBSOQYLDiN1VY5UWk71w',
-    appId: '1:605745330694:web:20968fbcc1258b97ff6187',
-    messagingSenderId: '605745330694',
-    projectId: 'cardiocare-data',
-    authDomain: 'cardiocare-data.firebaseapp.com',
-    storageBucket: 'cardiocare-data.appspot.com',
-    measurementId: 'G-C6NDFEQKSF',
+    apiKey: 'AIzaSyBiRFo_c5PrNUYlFd9hRRFG1gCjGqck0tw',
+    appId: '1:1080513248428:web:466c9d5035046b9c747309',
+    messagingSenderId: '1080513248428',
+    projectId: 'cardiocare-database',
+    authDomain: 'cardiocare-database.firebaseapp.com',
+    storageBucket: 'cardiocare-database.appspot.com',
+    measurementId: 'G-6F2WB4CMP6',
   );
+
 }

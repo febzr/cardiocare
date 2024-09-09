@@ -1,5 +1,5 @@
 name: cardiocare
-description: "A new Flutter project."
+description: "Cardiocare"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -32,8 +32,9 @@ dependencies:
     sdk: flutter
   image_picker: ^0.8.4+8
   path_provider: ^2.0.11
-  fl_chart: ^0.36.0
+  fl_chart: ^0.68.0
   iconic: ^0.1.0
+  step_progress_indicator: ^1.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -41,10 +42,17 @@ dependencies:
   cupertino_icons: ^1.0.6
   firebase_core: ^2.24.2
   firebase_auth: ^4.20.0
-  cloud_firestore: ^4.17.5
   firebase_storage: ^11.7.7
-  uuid: ^4.5.0
+  firebase_app_check: ^0.2.2+7
+  carousel_slider: ^5.0.0
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  geolocator: ^7.6.2
 
+  path: any
+  uuid: ^4.4.2
+  cloud_firestore: ^4.17.5
+  lottie: ^3.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -82,6 +90,19 @@ flutter:
     - assets/images/displayconsumodeagua.png
     - assets/images/displayremedio.png
     - assets/images/displaycomida.png
+    - assets/images/adicionar.png
+    - assets/images/copo_agua.png
+
+    - assets/images/slider/slider_1.png
+    - assets/images/slider/slider 2.png
+    - assets/images/slider/slider 3.png
+    - assets/images/slider/slider 4.png
+    - assets/images/slider/slider 5.png
+
+    - assets/gifs/copo.gif
+
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -123,3 +144,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  
