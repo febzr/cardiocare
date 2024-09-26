@@ -20,14 +20,12 @@ class _dieta extends State<remedio> {
     i.state = () {
       setState(() {
         _loadData();
-        });
+      });
     };
     return i;
   }
 
   @override
-
-  
   void initState() {
     super.initState();
     pesquisa.addListener(_filterList);
@@ -46,7 +44,9 @@ class _dieta extends State<remedio> {
       // Filter the list based on the search text
       // Assuming listaCardremedio returns List<cardRemedio>
       _filteredList = _allItems.where((item) {
-        return item.name_remedio.toLowerCase().contains(pesquisa.text.toLowerCase());
+        return item.name_remedio
+            .toLowerCase()
+            .contains(pesquisa.text.toLowerCase());
       }).toList();
     });
   }

@@ -12,21 +12,20 @@ class cardPressao extends StatelessWidget {
   final String id;
   Function? state;
 
-  cardPressao(
-      {super.key,
-      required this.sistole,
-      required this.diastole,
-      required this.pulso,
-      required this.peso,
-      this.observacao,
-      required this.datatime,
-      required this.id,
-      this.state});
+  cardPressao({
+    super.key,
+    required this.sistole,
+    required this.diastole,
+    required this.pulso,
+    required this.peso,
+    this.observacao,
+    required this.datatime,
+    required this.id,
+    this.state,
+  });
 
-  
   getdatetime() {
     final a = DateTime.fromMillisecondsSinceEpoch(datatime);
-
     return a;
   }
 
@@ -51,67 +50,52 @@ class cardPressao extends StatelessWidget {
           color: Theme.of(context).cardColor,
           borderRadius: const BorderRadius.all(Radius.circular(10))),
       child: Material(
-          color: Colors.transparent,
+        color: Colors.transparent,
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        child: InkWell(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
-          child: InkWell(
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-            splashColor: Theme.of(context).splashColor,
-            onTap: () {
-              Navigator.of(context).pushNamed('criador_de_pressao', arguments: {
-                'sistole':  sistole,
-                'diastole': diastole,
-                'pulso': pulso,
-                'peso': peso,
-                'observacao': observacao,
-                'datatime': datatime,
-                'id': id,
-                'state':state
-              }).then((_){state!();});
-
-
-
-            },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
+          splashColor: Theme.of(context).splashColor,
+          onTap: () {
+            Navigator.of(context).pushNamed('criador_de_pressao', arguments: {
+              'sistole': sistole,
+              'diastole': diastole,
+              'pulso': pulso,
+              'peso': peso,
+              'observacao': observacao,
+              'datatime': datatime,
+              'id': id,
+              'state': state
+            }).then((_) {
+              state!();
+            });
+          },
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: (16 / 430) * size.width),
+                child: Text(
                   timestampToDate(
                       DateTime.fromMillisecondsSinceEpoch(datatime)),
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                Row(children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pushNamed('criador_de_pressao', arguments: {
-                        'sistole': sistole,
-                        'diastole': diastole,
-                        'pulso': pulso,
-                        'peso': peso,
-                        'id': id,
-                        'observacao': observacao,
-                        'datatime': datatime,
-                        'state':state
-                      }).then((_){state!();});
-                    },
-                    icon: const Icon(Iconic.pencil),
-                    color: Theme.of(context).primaryColor,
-                    iconSize: (33 / 932) * size.height,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      service().apagarpressao(id);
-                      state!();
-                    },
-                    icon: const Icon(Iconic.trash_straight),
-                    color: Theme.of(context).primaryColor,
-                    iconSize: (33 / 932) * size.height,
-                  ),
-                ]),
-              ],
-            ),
-          )),
+              ),
+              IconButton(
+                onPressed: () {
+                  service().apagarpressao(id);
+                  state!();
+                },
+                icon: const Icon(Iconic.trash_straight),
+                color: Theme.of(context).primaryColor,
+                iconSize: (33 / 932) * size.height,
+                padding: EdgeInsets.only(right: (16 / 430) * size.width),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

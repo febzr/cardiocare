@@ -48,14 +48,11 @@ class CardAgua extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             splashColor: Theme.of(context).splashColor,
             onTap: () {
-              /*Navigator.of(context).pushNamed('criador_de_pressao', arguments: {
+              Navigator.of(context).pushNamed('agua_config', arguments: {
                 'aguabebida': aguabebida,
                 'datatime': datatime,
                 'id': id,
-                'state': state
-              }).then((_) {
-                state!();
-              });*/
+              });
             },
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,15 +66,11 @@ class CardAgua extends StatelessWidget {
                 Row(children: [
                   IconButton(
                     onPressed: () {
-                      /*Navigator.of(context).pushNamed('criador_de_pressao',
-                          arguments: {
-                            'aguabebida': aguabebida,
-                            'datatime': datatime,
-                            'id': id,
-                            'state': state
-                          }).then((_) {
-                        state!();
-                      });*/
+                      Navigator.of(context).pushNamed('agua_config', arguments: {
+                        'aguabebida': aguabebida,
+                        'datatime': datatime,
+                        'id': id,
+                      });
                     },
                     icon: const Icon(Iconic.pencil),
                     color: Theme.of(context).primaryColor,

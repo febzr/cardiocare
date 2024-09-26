@@ -16,39 +16,39 @@ class cadastro extends StatelessWidget {
 
   String? validadornome(String? value) {
     if (value == null || value.isEmpty) {
-      return 'preencha o seu nome';
+      return 'Preencha o seu nome';
     } else if (RegExp(r'^[a-zA-Z]{2,}\s[a-zA-Z]+$').hasMatch(value)) {
       return null;
     } else {
-      return ' preencha nome e sobrenome';
+      return ' Deve conter nome e Sobrenome';
     }
   }
 
   String? validadoremail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'preencha o seu email';
+      return 'Preencha o seu email';
     } else if (RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
       return null;
     } else {
-      return ' preencha um email valido';
+      return ' Email inválido';
     }
   }
 
   String? validadortelefone(String? value) {
     if (value == null || value.isEmpty) {
-      return 'preencha o seu telefone';
+      return 'Preencha o seu telefone';
     } else if (RegExp(r'\d{11}').hasMatch(value)) {
       return null;
     } else {
-      return ' preencha seu telefone no formato correto';
+      return ' Telefone inválido';
     }
   }
 
   String? validadorsenha(String? value) {
     if (value == null || value.isEmpty) {
-      return 'coloque uma senha';
+      return 'Preencha uma senha';
     } else if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z]).{8,}$').hasMatch(value)) {
-      return 'coloque uma senha com letras maiusculas e minusculas';
+      return 'A senha deve ter letras maiúsculas e minúsculas';
     } else {
       return null;
     }

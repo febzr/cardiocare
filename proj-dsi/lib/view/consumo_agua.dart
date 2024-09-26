@@ -22,24 +22,26 @@ class _WaterScreen extends State<WaterScreen> {
   bool outro = false;
   String? valoroutro = '';
   late modelagua dia;
-  int count=0;
+  int count = 0;
 
   isdiacadastrado() async {
-    dia = await aguadodia();
+    dia = (await aguadodia())!;
     return isDataIgual(
-        datetime1: DateTime.now(),
-        datetime2: DateTime.fromMillisecondsSinceEpoch(dia.datatime)).isigual();
+            datetime1: DateTime.now(),
+            datetime2: DateTime.fromMillisecondsSinceEpoch(dia.datatime))
+        .isigual();
   }
- carregaragua()async{
-   if (await isdiacadastrado()){
-    setState(() {
-      count=1;
-      
-      bebida = double.parse(dia.aguabebida.toString()).toInt();
-    });
-    };
- }
 
+  carregaragua() async {
+    if (await isdiacadastrado()) {
+      setState(() {
+        count = 1;
+
+        bebida = double.parse(dia.aguabebida.toString()).toInt();
+      });
+    }
+    ;
+  }
 
   adicionar() {
     setState(() {
@@ -59,6 +61,8 @@ class _WaterScreen extends State<WaterScreen> {
 
   Future<String?> _showNumericInputDialog(BuildContext context) {
     final TextEditingController textController = TextEditingController();
+    print(DateTime.now());
+    print(DateTime.fromMillisecondsSinceEpoch(dia.datatime));
 
     return showDialog<String>(
       context: context,
@@ -95,10 +99,9 @@ class _WaterScreen extends State<WaterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if(count<1){
-   carregaragua();
-   
-   }
+    if (count < 1) {
+      carregaragua();
+    }
     barraagua barra = barraagua(
       agua_consumida: double.parse(bebida.toString()),
       meta: double.parse(meta.toString()),
@@ -117,32 +120,25 @@ class _WaterScreen extends State<WaterScreen> {
                     padding: EdgeInsets.only(
                         top: (30 / 932) * MediaQuery.of(context).size.height),
                     child: backButton(
-                      fuc: () async{
-                        try{
-                        if (await isdiacadastrado()) {
-                          
-                          service().adicionaragua(modelagua(
-                              aguabebida: double.parse(bebida.toString()),
-                              datatime: dia.datatime,
-                              id: dia.id));
-                          
-                        
-                        }else{
-                          service().adicionaragua(modelagua(
-                              aguabebida: double.parse(bebida.toString()),
-                              datatime: DateTime.now().millisecondsSinceEpoch,
-                              id: Uuid().v1()));}} catch(e) {
-                          
+                      fuc: () async {
+                        try {
+                          if (await isdiacadastrado()) {
+                            service().adicionaragua(modelagua(
+                                aguabebida: double.parse(bebida.toString()),
+                                datatime: dia.datatime,
+                                id: dia.id));
+                          } else {
+                            service().adicionaragua(modelagua(
+                                aguabebida: double.parse(bebida.toString()),
+                                datatime: DateTime.now().millisecondsSinceEpoch,
+                                id: Uuid().v1()));
+                          }
+                        } catch (e) {
                           service().adicionaragua(modelagua(
                               aguabebida: double.parse(bebida.toString()),
                               datatime: DateTime.now().millisecondsSinceEpoch,
                               id: Uuid().v1()));
-                              
                         }
-
-
-
-
                       },
                     )),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -442,16 +438,22 @@ class _WaterScreen extends State<WaterScreen> {
                               (185 / 420) * MediaQuery.of(context).size.width,
                           height:
                               (60 / 930) * MediaQuery.of(context).size.height,
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              Navigator.pushNamed(context, 'historico de agua').then((_) {
-                              Navigator.of(context).pop();
-                              Navigator.pushNamed(context, 'consumo_agua');
-
-          });;
-                            },
-                            icon: Icon(Icons.history),
-                            label: Text('HISTÓRICO'),
+                          child: Column(
+                            children: [
+                              ElevatedButton.icon(
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                          context, 'historico de agua')
+                                      .then((_) {
+                                    Navigator.of(context).pop();
+                                    Navigator.pushNamed(
+                                        context, 'consumo_agua');
+                                  });
+                                },
+                                icon: Icon(Icons.history),
+                                label: Text('HISTÓRICO'),
+                              ),
+                            ],
                           ))
                     ],
                   ))

@@ -12,9 +12,9 @@ class Login extends StatelessWidget {
   Login({super.key});
   String? validatorlogin(String? value) {
     if (value == null || value.isEmpty) {
-      return 'coloco um email';
+      return 'Insira um email';
     } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-      return 'coloque um email valido';
+      return 'Email inválido';
     } else {
       return null;
     }
@@ -22,9 +22,9 @@ class Login extends StatelessWidget {
 
   String? validatorsenha(String? value) {
     if (value == null || value.isEmpty) {
-      return 'coloque uma senha';
+      return 'Insira uma senha';
     } else if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z]).{8,}$').hasMatch(value)) {
-      return 'coloque a senha corretamente';
+      return 'Usuário ou senha inválidos';
     } else {
       return null;
     }

@@ -42,13 +42,13 @@ class sobreoapp extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Esse aplicativo intitulado CardioCare foi feito para a cadeira de desenvolvimento de sistemas de informação, ministrado pelo professor Gabriel Alves. O CardioCare tem como objetivo ser um aplicativo de auxílio para quem sofre com problemas cardiovasculares, servindo como um aplicativo de registro de pressão, consumo de água, dieta e medicamentos, com a finalidade de tornar a relação médico-paciente mais clara e tornar o diagnóstico e tratamento da doença mais fácil e cômodo para o paciente.',
+                'Esse aplicativo intitulado CardioCare foi feito para a cadeira de desenvolvimento de sistemas de informação, ministrada pelo professor Gabriel Alves. O CardioCare tem como objetivo ser um aplicativo de auxílio para quem sofre com problemas cardiovasculares, servindo como um aplicativo de registro de pressão, consumo de água, dieta e medicamentos, com a finalidade de tornar a relação médico-paciente mais clara e tornar o diagnóstico e tratamento da doença mais fácil e cômodo para o paciente.',
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w500),textAlign: TextAlign.center,
               ),
               Text('Desenvolvido pelos alunos:',style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w500),textAlign: TextAlign.center),
               Text('Gabriel Firmino',style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w500),textAlign: TextAlign.center),
               Text(' Khadidja Moraes',style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w500),textAlign: TextAlign.center),
-              Text('Luis felipe bezerra',style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w500),textAlign: TextAlign.center),
+              Text('Luiz Felipe Bezerra',style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w500),textAlign: TextAlign.center),
               Text(' Raphael Cordeiro',style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w500),textAlign: TextAlign.center),
               Text(' Yago Ferraz.',style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w500),textAlign: TextAlign.center)
             ],

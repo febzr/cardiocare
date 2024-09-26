@@ -13,8 +13,10 @@ Future<List> listaCardremedio() async {
   modelremedio datamodel = modelremedio(
       id: doc['id'],
       observacao: doc['observacao'],
-      remedio: doc['remedio']);
-      
+      remedio: doc['remedio'],
+      dosagem: doc['dosagem'],
+      datetime: doc['datetime'],
+      unidade: doc['unidade'],);
 
   cardRemedio card = dataToCardRemedio(datamodel);
   list.add(card);

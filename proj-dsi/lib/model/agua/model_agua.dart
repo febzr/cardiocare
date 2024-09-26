@@ -14,5 +14,4 @@ class modelagua {
       'datatime': datatime
     };}
 
-
 }

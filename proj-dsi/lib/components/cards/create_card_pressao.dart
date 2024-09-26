@@ -24,13 +24,15 @@ class _createCard extends State<createCard> {
   final TextEditingController observadacoes = TextEditingController();
   final ruledatas = RegExp(r'^\d{1,3}(\.\d{1,2})?$');
   int cont=0;
-
+  DateTime? data;
+  TimeOfDay? time;
  
 
  
 
   @override
   Widget build(BuildContext context) {
+   
     final args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     DateTime? data;
@@ -138,13 +140,28 @@ class _createCard extends State<createCard> {
                 bottom: (33 / 932) * MediaQuery.of(context).size.height),
             child: customButtonLarge(
                 data: () async{
-                 
+                  int datafinal;
                   if (args != null) {
-                    final pressao = modelPressao(sistole: double.parse(sistole.text), diastole: double.parse(diastole.text), pulso: double.parse(pulso.text), peso: double.parse(peso.text), datatime: args['datatime'] , id: args['id'].toString(),observacao: observadacoes.text);
+                      
+                      if (data != null && time != null) {
+                        datafinal = DateTime(data!.year, data!.month, data!.day, time!.hour, time!.minute).millisecondsSinceEpoch;
+                      } else {
+                        datafinal = DateTime.now().millisecondsSinceEpoch;
+                      
+                      }
+
+                    final pressao = modelPressao(sistole: double.parse(sistole.text), diastole: double.parse(diastole.text), pulso: double.parse(pulso.text), peso: double.parse(peso.text), datatime: datafinal , id: args['id'].toString(),observacao: observadacoes.text);
                     await service().adicionarpressao(pressao);
                   }
                   if (args == null) {
-                    final pressao = modelPressao(sistole: double.parse(sistole.text), diastole: double.parse(diastole.text), pulso: double.parse(pulso.text), peso: double.parse(peso.text), datatime: DateTime.now().millisecondsSinceEpoch, id: Uuid().v1(),observacao: observadacoes.text);
+                    if (data != null && time != null) {
+                        datafinal = DateTime(data!.year, data!.month, data!.day, time!.hour, time!.minute).millisecondsSinceEpoch;
+                      } else {
+                        datafinal = DateTime.now().millisecondsSinceEpoch;
+                      
+                      }
+
+                    final pressao = modelPressao(sistole: double.parse(sistole.text), diastole: double.parse(diastole.text), pulso: double.parse(pulso.text), peso: double.parse(peso.text), datatime: datafinal, id: Uuid().v1(),observacao: observadacoes.text);
                     await service().adicionarpressao(pressao);
                   }
 

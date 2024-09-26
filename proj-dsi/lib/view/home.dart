@@ -77,7 +77,7 @@ class _home extends State<home> {
               width: double.infinity,
               padding: EdgeInsets.only(
                   top: (20 / 932) * MediaQuery.of(context).size.height,
-                  bottom: (20 / 932) * MediaQuery.of(context).size.height),
+                  bottom: (37 / 932) * MediaQuery.of(context).size.height),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -111,7 +111,7 @@ class _home extends State<home> {
                             bottom: (15 / 932) *
                                 MediaQuery.of(context).size.height),
                         child: displaySmall(
-                            label: 'remédios',
+                            label: 'Remédios',
                             image: 'assets/images/displayremedio.png',
                             ontap: () {
                               Navigator.pushNamed(context, 'remedio');
@@ -128,7 +128,7 @@ class _home extends State<home> {
             ),
             Container(
               width: (377 / 430) * MediaQuery.of(context).size.width,
-              height: (280 / 932) * MediaQuery.of(context).size.height,
+              height: (250 / 932) * MediaQuery.of(context).size.height,
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.25), 
@@ -155,16 +155,18 @@ class _home extends State<home> {
                                   bottom: MediaQuery.of(context).size.height *
                                       (26 / 932)),
                               child: Text(
-                                'pressão x dia',
+                                'Água x dia',
                                 style: Theme.of(context).textTheme.titleSmall,
                               )),
-                          BarGrafico()
+                          Container(width: MediaQuery.of(context).size.width*0.33,height: MediaQuery.of(context).size.height*0.11,
+                            child: BarGrafico()
+                          )
                         ],
                       ),
                       Container(
                         margin: EdgeInsets.only(
                             top: MediaQuery.of(context).size.height *
-                                (22 / 932)),
+                                (37 / 932)),
                         color: Colors.white,
                         width: 3,
                         height:
@@ -182,7 +184,9 @@ class _home extends State<home> {
                                 'pressão x dia',
                                 style: Theme.of(context).textTheme.titleSmall,
                               )),
-                          homeCircular()
+                          Container(width: MediaQuery.of(context).size.width*0.33,height: MediaQuery.of(context).size.height*0.11,
+                            child: homeCircular()
+                          )
                         ],
                       )
                     ],
@@ -195,13 +199,7 @@ class _home extends State<home> {
                         'Gráficos',
                         style: Theme.of(context).textTheme.displayMedium,
                       )),
-                  Padding(
-                      padding: EdgeInsets.only(
-                          left: (28 / 932) * MediaQuery.of(context).size.width),
-                      child: Text(
-                        'clique no card e veja os detalhes',
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ))
+                  
                 ],
               ),
             ),

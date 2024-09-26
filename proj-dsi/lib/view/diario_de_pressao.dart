@@ -3,6 +3,7 @@ import 'package:cardiocare/components/buttons/custom_Floating_Action_Buttom.dart
 import 'package:cardiocare/components/cards/card_pressao.dart';
 import 'package:cardiocare/components/inputs/custom_data_picker_null.dart';
 import 'package:cardiocare/control/utils/is_dataigual.dart';
+import 'package:cardiocare/service/service.dart';
 import '../control/pressao/listcardpressao.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,6 @@ class diariodepressao extends StatefulWidget {
 }
 
 class _diarioDePressao extends State<diariodepressao> {
-  @override
   DateTime? data;
 
   setsetstate(cardPressao i) {
@@ -26,7 +26,6 @@ class _diarioDePressao extends State<diariodepressao> {
 
   bool dataisigual(cardPressao i, DateTime? d) {
     DateTime t = i.getdatetime();
-
     final r = isDataIgual(datetime1: t, datetime2: d);
     return r.isigual();
   }
@@ -87,38 +86,76 @@ class _diarioDePressao extends State<diariodepressao> {
               ]),
               Expanded(
                 child: SizedBox(
-                    width: (374 / 430) * MediaQuery.of(context).size.width,
-                    child: FutureBuilder(
-                        future: listaCardPressao(),
-                        builder: ((context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const CircularProgressIndicator();
-                          } else if (snapshot.hasError) {
-                            return Text('Erro: ${snapshot.error}');
-                          } else {
-                            
-                            for (var i in snapshot.data!) {
-                              i.state = () {
-                                setState(() {});
-                              };
-                            }
-                            ;
-
-                            return RefreshIndicator(
-                                onRefresh: () async {
-                                  setState(() {});
-                                },
-                                child: ListView(children: [
-                                  for (var i in snapshot.data!)
-                                    (data == null)
-                                        ? setsetstate(i)
-                                        : (dataisigual(setsetstate(i), data)
-                                            ? setsetstate(i)
-                                            : const SizedBox.shrink())
-                                ]));
+                  width: (374 / 430) * MediaQuery.of(context).size.width,
+                  child: FutureBuilder(
+                      future: listaCardPressao(),
+                      builder: ((context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Erro: ${snapshot.error}');
+                        } else {
+                          for (var i in snapshot.data!) {
+                            i.state = () {
+                              setState(() {});
+                            };
                           }
-                        }))),
+
+                          return RefreshIndicator(
+                            onRefresh: () async {
+                              setState(() {});
+                            },
+                            child: ListView(
+                              children: [
+                                for (var i in snapshot.data!)
+                                  (data == null)
+                                      ? Dismissible(
+                                          key: Key(i.id),
+                                          onDismissed: (direction) {
+                                            service().apagarpressao(i.id);
+                                            setState(() {});
+                                          },
+                                          background: Container(
+                                            color: Colors.red,
+                                            alignment: Alignment.centerRight,
+                                            padding: const EdgeInsets.only(
+                                                right: 20.0),
+                                            child: const Icon(
+                                              Icons.delete,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          child: setsetstate(i),
+                                        )
+                                      : (dataisigual(setsetstate(i), data)
+                                          ? Dismissible(
+                                              //swap
+                                              key: Key(i.id),
+                                              onDismissed: (direction) {
+                                                service().apagarpressao(i.id);
+                                                setState(() {});
+                                              },
+                                              background: Container(
+                                                color: Colors.red,
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                padding: const EdgeInsets.only(
+                                                    right: 20.0),
+                                                child: const Icon(
+                                                  Icons.delete,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              child: setsetstate(i),
+                                            )
+                                          : const SizedBox.shrink())
+                              ],
+                            ),
+                          );
+                        }
+                      })),
+                ),
               ),
             ],
           ),

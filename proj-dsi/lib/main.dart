@@ -20,15 +20,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:cardiocare/view/agua_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-    
   );
-  
+
   runApp(const MyApp());
 }
 
@@ -55,12 +55,13 @@ class MyApp extends StatelessWidget {
         'consumo_agua': (context) => WaterScreen(),
         'roteador': (context) => const roteador(),
         'perfil': (context) => const ProfileScreen(),
-        'suporte': (context) =>  suporteslide(),
+        'suporte': (context) => suporteslide(),
         'sobre': (context) => const sobreoapp(),
         'mapa': (context) => const mapa(),
         'historico de agua': (context) => const historicodeagua(),
+        'agua_config': (context) => config_agua(),
       },
-      home: roteador(),  
+      home: roteador(),
     );
   }
 }

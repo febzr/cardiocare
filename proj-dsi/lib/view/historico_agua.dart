@@ -41,9 +41,7 @@ class _historicodeagua extends State<historicodeagua> {
           color: Colors.white,
         ),
         onpress: () {
-          Navigator.of(context).pushNamed('criador_de_pressao').then((_) {
-            setState(() {});
-          });
+          Navigator.of(context).pushNamed('agua_config');
         },
       ),
       body: SizedBox(
